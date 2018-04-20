@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['before'] => 'force.ssl',function () {
     return view('welcome');
 });
 
