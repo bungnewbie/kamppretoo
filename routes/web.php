@@ -13,7 +13,7 @@
 
 Route::get('/', ['before' => 'force.ssl'], function()
 {
-    return "This will be forced SSL";
+    return view('welcome');
 });
 
 Auth::routes();
