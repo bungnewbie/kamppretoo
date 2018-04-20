@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Symfony\Routing\Generator\UrlGenerator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
