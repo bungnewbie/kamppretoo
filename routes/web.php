@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('https://kampretoo.herokuapp.com/', ['before' => 'force.ssl'], function(){
+Route::get('/', ['http' => 'force.ssl'], function(){
     return view('welcome');
 });
 
