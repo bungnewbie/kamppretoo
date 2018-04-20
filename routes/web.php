@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', ['before'] => 'force.ssl',function () {
-    return view('welcome');
+Route::get('/', ['before' => 'force.ssl'], function()
+{
+    return "This will be forced SSL";
 });
 
 Auth::routes();
