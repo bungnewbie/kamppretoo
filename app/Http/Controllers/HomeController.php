@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\User;
-use App\SendMessage;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('form', 'send');
     }
 
     /**
@@ -27,7 +25,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $messages = DB::table('send_messages')->where('user_id', Auth::user()->id)->get();
-        return view('home', compact('messages'));
+        return view('home', [
+            'messages' => Message::getMessage()
+        ]);
+    }
+
+    public function form($url)
+    {
+        return view('form', [
+            'user' => User::whereUrlToken($url)
+        ]);
+    }
+
+    public function send(Request $request)
+    {
+        $request->validate([
+            'message' => ['required', 'min:5', 'max:225', 'string'],
+        ]);
+
+        Message::create([
+            'message' => $request->message,
+            'url_token' => $request->path()
+        ]);
+
+        session()->flash('notice', 'Your message was sent privately');
+        return redirect()->back();
     }
 }

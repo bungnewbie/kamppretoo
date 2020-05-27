@@ -21,6 +21,10 @@ class RedirectIfAuthenticated
             return redirect('/home');
         }
 
+        if ($request->is('login')) {
+            return redirect('/');
+        }
+        
         return $next($request);
     }
 }

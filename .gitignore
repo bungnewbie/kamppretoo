@@ -5,7 +5,9 @@
 /vendor
 /.idea
 /.vscode
+/public/vendor/@*
 /.vagrant
+/.phpintel
 Homestead.json
 Homestead.yaml
 npm-debug.log
