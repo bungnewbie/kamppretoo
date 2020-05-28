@@ -1,0 +1,5 @@
+name: Greet Every Update
+
+push:
+  branches:
+    - master	
