@@ -37,17 +37,17 @@ class SocialAuthController extends Controller
 
         if (!is_null($user)) return $user;
 
-        $avatar   = file_get_contents($request->avatar);
-        $filename = "{$request->id}.jpeg";
+        // $avatar   = file_get_contents($request->avatar);
+        // $filename = "{$request->id}.jpeg";
 
-        Storage::put("{$provider}/avatar/{$filename}", $avatar);
+        // Storage::put("{$provider}/avatar/{$filename}", $avatar);
 
         return User::create([
             'name' => $request->name,
             'email' => $request->email,
             'provider_name'=> $provider,
             'provider_id'=> $request->id,
-            'avatar' => $filename,
+            'avatar' => $request->avatar,
             'url_token' => Uuid::uuid4()->getHex()
         ]);
     }

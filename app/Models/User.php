@@ -45,10 +45,12 @@ class User extends Authenticatable
 
     public function getAvatarUrlAttribute()
     {
-        $filesystem = config('filesystems.default');
+        return is_null($this->avatar)
+                ? $this->avatar
+                : "https://via.placeholder.com/155";
 
-        if (is_null($this->avatar)) return "https://via.placeholder.com/155";
-
-        return Storage::disk($filesystem)->url("{$this->provider_name}/avatar/{$this->avatar}");
+        // $filesystem = config('filesystems.default');
+        // if (is_null($this->avatar)) return "https://via.placeholder.com/155";
+        // return Storage::disk($filesystem)->url("{$this->provider_name}/avatar/{$this->avatar}");
     }
 }

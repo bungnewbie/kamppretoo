@@ -12,7 +12,7 @@ if (! function_exists('logged_in_user')) {
 if (! function_exists('user_url')) {
     function user_url()
     {
-        return (string)env('APP_URL').'/'.logged_in_user()->url_token;
+        return (string)env('APP_URL').logged_in_user()->url_token;
     }
 }
 
